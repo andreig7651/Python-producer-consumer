@@ -1,0 +1,23 @@
+Gavriliu Andrei-Mihai 333CB
+
+In implementarea temei m-am folosit foarte mult de dictionare. Consider ca asa, am facut o structurare buna a datelor
+si vad dictionarele ca o solutie mai eficienta decat listele. Am folosit dictionare pentru a stoca produsele publicate
+de catre producator(fiecare producator are un id, ce este cheie in dictionar, iar produsele sale fac parte dintr-o lista
+ce reprezinta valoarea). O abordare asemanatoare am avut si pentru cosurile de cumparaturi pe care le stochez identic in cart_list.
+
+Cred ca implementarea mea este relativ optima, folosind doar 3 lock-uri astfel:
+    - nu putem avea 2 producatori cu acelasi ID
+    - nu putem avea 2 cosuri cu acelasi ID
+    - 2 producatori nu pot lua acelasi produs de pe stoc
+
+Pentru generarea de ID-uri nu putem avea 2 ID-uri identice.
+Adaugarea si stergerea din cos, implica modificarea dictionarului cart_list, ce tine ID cos-produse, products_per_producer ce tine Id producator-produsele sale disponibile, lista market_products ce tine produsele disponibile din magazin. Dictionarul producers_stock il folosesc pentru a reface dictionarulproducts_per_producer.
+Astfel, caut mereu la ce producator se gasea produsul ce este eliminat din cos si il readaug in products_per_producer.
+
+Consumatorul itereaza prin lista de cosuri si cat timp are produse de consumat dintr-un cos, executa o operatie de add sau remove. In final, afiseaza produsele din cos
+
+Producatorul cicleaza cat timp are produse de publicat, apoi publica cantitatea din fiecare in parte
+
+Link Github personal: https://github.com/andreig7651
+
+Link fisier .git, incarcat pe drive: https://drive.google.com/drive/folders/1JTErV0y42fMJxYoUKJBwP-hZvI1jHu_2?usp=share_link
